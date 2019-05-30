@@ -16,6 +16,7 @@ attr_reader :dockingstationcontents
   end
 
   def dock(bike)
+    raise"Docking station full" if (!@dockingstationcontents.empty?)
     @dockingstationcontents << bike
   end
 

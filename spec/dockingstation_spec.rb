@@ -17,8 +17,16 @@ describe Dockingstation do
     expect(dockingstation.dockingstationcontents).to include(bike)
   end
 
-  it "checks if itself is empty" do
+  it "can't release a bike if no bike exists" do
     dockingstation = Dockingstation.new
     expect{dockingstation.release_bike}.to raise_error("No bikes")
+  end
+
+  it "can't accept more bikes than it can hold (1 bike)" do
+    dockingstation = Dockingstation.new
+    bike = Bike.new
+    dockingstation.dock(bike)
+    bike2 = Bike.new
+    expect{dockingstation.dock(bike2)}.to raise_error("Docking station full")
   end
 end
